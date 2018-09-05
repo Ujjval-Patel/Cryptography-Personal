@@ -1,0 +1,49 @@
+  // affine cipher decryption
+
+  // optimized
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+
+int main()
+{
+    string s;
+    ll a,b;
+    cin>>a>>b;
+    cin>>s;
+    ll sl=s.length();
+    ll i,j;
+    
+    ll hash[26];
+    for(i=0;i<26;i++)
+    {
+        hash[i]=-1;
+    }
+
+    for(i=0;i<sl;i++)
+    {
+        ll t=s[i]-'a';
+        
+        if(hash[t]!=-1)
+        {
+            char c=hash[t]+'a';
+            cout<<c<<" ";
+        }
+        else
+        {
+            for(j=0;j<26;j++)
+            {
+                if((((j*a)+b) % 26) == t)
+                {
+                    char c=j+'a';
+                    cout<<c<<" ";
+                    break;
+                }
+            }
+            hash[t]=j;
+        }
+    }
+    return 0;
+}
